@@ -1,3 +1,3 @@
-#Dynamic Arrays
+#Dynamic Array
 
 in c with pointer
