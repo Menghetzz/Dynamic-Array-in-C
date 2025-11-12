@@ -1,13 +1,19 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define NUMBERS 2000
+#define NUMBERS 3000
 
 typedef struct {
 	int* item;      // Puntatore all'array dinamico
 	int size;       // Numero di elementi attualmente presenti
 	int capacity;   // Capacità  massima allocata
 } DynamicArray;
+
+void create(DynamicArray* array) {
+	array->capacity = 0;
+	array->size = 0;
+	array->item = NULL;
+}
 
 void append(DynamicArray* array, int valore) {
 	if(array->capacity == array->size) {
@@ -35,9 +41,7 @@ void destroy(DynamicArray* array) {
 int main()
 {
 	DynamicArray* array = malloc(sizeof(DynamicArray));
-	array->capacity = 0;
-	array->size = 0;
-	array->item = NULL;
+	create(array);
 
 	for (int i = 1; i <= NUMBERS; i++) {
 		append(array, i);
@@ -46,8 +50,8 @@ int main()
 	for (int i = 0; i < NUMBERS; i++) {
 		printf("%d ", array->item[i]);
 	}
-	
-	destroy(array);
+
+	create(array);
     
 	return 0;
 }
