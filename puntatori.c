@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define NUMBERS 10000
+#define NUMBERS 2000
 
 typedef struct {
 	int* item;      // Puntatore all'array dinamico
@@ -26,6 +26,12 @@ void append(DynamicArray* array, int valore) {
 	array->size++;
 }
 
+void destroy(DynamicArray* array) {
+	array->item = NULL;
+	array->capacity = 0;
+	array->size = 0;
+}
+
 int main()
 {
 	DynamicArray* array = malloc(sizeof(DynamicArray));
@@ -41,8 +47,7 @@ int main()
 		printf("%d ", array->item[i]);
 	}
 	
-	free(array->item); 
-	free(array);
+	destroy(array);
     
 	return 0;
 }
