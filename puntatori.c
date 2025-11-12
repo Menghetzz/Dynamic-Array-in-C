@@ -33,6 +33,7 @@ void append(DynamicArray* array, int valore) {
 }
 
 void destroy(DynamicArray* array) {
+	free(array->item);
 	array->item = NULL;
 	array->capacity = 0;
 	array->size = 0;
@@ -51,7 +52,22 @@ int main()
 		printf("%d ", array->item[i]);
 	}
 
+	destroy(array);
+
+	// We can now recreate another one
+
 	create(array);
-    
+
+	for (int i = 1; i <= NUMBERS / 2; i++) {
+		append(array, i);
+	}
+
+	for (int i = 0; i < NUMBERS / 2; i++) {
+		printf("%d ", array->item[i]);
+	}
+
+	destroy(array);
+	free(array);
+
 	return 0;
 }
